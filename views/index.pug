@@ -36,7 +36,6 @@ html(lang="en")
                   p Released: #{game.released}
                 if game.rating
                   p Rating: #{game.rating.toFixed(1)}/5
-                a(href=`/details?id=${game.id}`) More details
         else if searchQuery
           p No games found matching "#{searchQuery}"
 
