@@ -194,6 +194,22 @@ app.get('/script.js', (req, res) => {
     `);
 });
 
+// Route to serve game info page
+app.get('/game/:id', async (req, res) => {
+    try {
+        const gameId = req.params.id;
+        const gameDetails = await games.getGameDetails(gameId);
+        
+        res.render('info', { 
+            game: gameDetails,
+            title: gameDetails.name || 'Game Details'
+        });
+    } catch (error) {
+        console.error("Error fetching game details:", error);
+        res.status(500).send("Error fetching game details");
+    }
+});
+
 
 
 const port = process.env.PORT || 5000;

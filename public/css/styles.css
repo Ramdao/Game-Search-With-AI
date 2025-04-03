@@ -1,4 +1,4 @@
-/* public/styles.css - Dark Mode Version */
+
 :root {
   --bg-primary: #121212;
   --bg-secondary: #1e1e1e;
@@ -221,4 +221,70 @@ a:hover {
 
 .back-link::before {
   content: "← ";
+}
+
+.game-detail {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.game-content {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.game-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.game-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+}
+
+.game-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.game-info p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.game-description {
+  margin-top: 30px;
+  line-height: 1.7;
+}
+
+.game-description p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.genre-tag, .platform-tag {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.release-date, .rating {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .game-content {
+    flex-direction: column;
+  }
 }

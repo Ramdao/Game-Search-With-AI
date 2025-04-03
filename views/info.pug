@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+  head
+    title= title
+    link(rel="stylesheet" href="/css/styles.css")
+  body
+    .back-link
+      a(href="/") ← Back to Home
+    .game-detail
+      h1= game.name
+      .game-content
+        .game-image
+          if game.background_image
+            img(src=game.background_image, alt=game.name)
+        .game-info
+          if game.released
+            p.release-date Released: #{game.released}
+          if game.rating
+            p.rating Rating: #{game.rating.toFixed(1)}/5
+          if game.genres && game.genres.length
+            p.genres Genres: 
+              each genre in game.genres
+                span.genre-tag #{genre.name}
+          if game.platforms && game.platforms.length
+            p.platforms Platforms: 
+              each platform in game.platforms
+                span.platform-tag #{platform.platform.name}
+      if game.description_raw
+        .game-description
+          h2 Description
+          p= game.description_raw

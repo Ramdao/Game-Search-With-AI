@@ -3,6 +3,7 @@ html(lang="en")
   head
     title Game Finder
     link(rel="stylesheet" href="/css/styles.css")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
   body
     .header-links
       a.top-games-link(href="/details") Top 10 Games
@@ -28,15 +29,21 @@ html(lang="en")
         if games.length > 0
           .game-grid
             each game in games
-              .game-tile
-                if game.background_image
-                  img(src=game.background_image, alt=game.name)
-                h3= game.name
-                if game.released
-                  p Released: #{game.released}
-                if game.rating
-                  p Rating: #{game.rating.toFixed(1)}/5
+              a.game-link(href=`/game/${game.id}`)
+                .game-tile
+                  if game.background_image
+                    img(src=game.background_image, alt=game.name)
+                  .game-info
+                    h3= game.name
+                    if game.released
+                      p Released: #{game.released}
+                    if game.rating
+                      p Rating: #{game.rating.toFixed(1)}/5
+                    if game.genres && game.genres.length
+                      .genre-tags
+                        each genre in game.genres.slice(0, 2)
+                          span.genre-tag #{genre.name}
         else if searchQuery
-          p No games found matching "#{searchQuery}"
+          p.no-results No games found matching "#{searchQuery}"
 
     script(src="/script.js")

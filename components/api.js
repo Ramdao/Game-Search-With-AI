@@ -1,6 +1,6 @@
 
 
-
+// function to filter to 10 games based on rating 
 async function topGames() {
     let reqUrl = 'https://api.rawg.io/api/games?key=d45ff65c85c84827a67ebe4eca53df87&ordering=-rating&page_size=10';
   
@@ -11,17 +11,18 @@ async function topGames() {
     });
   
     let data = await response.json();
-    console.log("API Response:", data); // Log the API response
+    console.log("API Response:", data); 
   
     return data.results || [];
   }
 
 
+  // search function
 
   async function searchGames(searchTerm = "") {
     let reqUrl = 'https://api.rawg.io/api/games?key=d45ff65c85c84827a67ebe4eca53df87';
   
-    // If a search term is provided, modify the URL
+   
     if (searchTerm) {
       reqUrl += `&search=${encodeURIComponent(searchTerm)}`;
     }
@@ -35,12 +36,18 @@ async function topGames() {
     return await response.json();
   }
   
-  
+  // function to get game details by ID
+ const getGameDetails = async (id) => {
+  const response = await fetch(`https://api.rawg.io/api/games/${id}?key=d45ff65c85c84827a67ebe4eca53df87`);
+  const data = await response.json();
+  return data;
+};
   
 
 
   module.exports = {
     topGames,
     searchGames,
+    getGameDetails,
   };
 

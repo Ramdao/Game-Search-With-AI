@@ -3,6 +3,7 @@ html(lang="en")
   head
     title Top Rated Games
     link(rel="stylesheet" href="/css/styles.css")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
   body
     h1 Top 10 Rated Games
     a.back-link(href="/") ← Back Home
@@ -10,14 +11,20 @@ html(lang="en")
     if games.length
       .game-list
         each game in games
-          .game-card
-            if game.background_image
-              img(src=game.background_image, alt=game.name)
-            h3= game.name
-            if game.released
-              p Released: #{game.released}
-            if game.rating
-              p Rating: #{game.rating.toFixed(1)}/5
+          a.game-link(href=`/game/${game.id}`)
+            .game-card
+              if game.background_image
+                img(src=game.background_image, alt=game.name)
+              .game-info
+                h3= game.name
+                if game.released
+                  p Released: #{game.released}
+                if game.rating
+                  p Rating: #{game.rating.toFixed(1)}/5
+                if game.genres && game.genres.length
+                  .genre-tags
+                    each genre in game.genres.slice(0, 2)
+                      span.genre-tag #{genre.name}
     else
       .no-games
         p No top-rated games found.
